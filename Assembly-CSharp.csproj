@@ -10,7 +10,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace>
     </RootNamespace>
-    <ProjectGuid>{EF99FEA2-24C3-4236-EE48-13EC9AA6FFAE}</ProjectGuid>
+    <ProjectGuid>{FF637E22-07E9-A78D-D8BE-B75231096D0A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -72,16 +72,16 @@
     <Compile Include="Assets\ToDrawSlot.cs" />
     <Compile Include="Assets\UsedDeck.cs" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>C:/Users/micha/Desktop/inż/cardsbj (2)/cardqwe/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/micha/Desktop/inż/Makao_v3/Makao/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/micha/Desktop/inż/cardsbj (2)/cardqwe/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/micha/Desktop/inż/Makao_v3/Makao/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/micha/Desktop/inż/cardsbj (2)/cardqwe/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/micha/Desktop/inż/Makao_v3/Makao/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/micha/Desktop/inż/cardsbj (2)/cardqwe/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/micha/Desktop/inż/Makao_v3/Makao/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

@@ -2,7 +2,7 @@ WindowsStandalone
 PlayerPath?
 C:/Users/micha/Desktop/makao/cards.exe
 SceneListBegin?
-Assets/bobby.unity
+Assets/offline.unity
 Assets/rozgrywka.unity
 SceneListEnd?
 c422dd62785a6d0afa870fbd111886ce Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret

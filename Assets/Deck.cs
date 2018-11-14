@@ -20,6 +20,8 @@ public class Deck : MonoBehaviour
         Shuffle();
     }
 
+
+
     public void Shuffle()
     {
         List<CardId> tmp = new List<CardId>();
