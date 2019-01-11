@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [Serializable]
 public class Deck : MonoBehaviour
 {
-
+    public Player player;
     public List<CardId> readyCards = new List<CardId>();
     public List<CardId> usedCards = new List<CardId>();
 
@@ -52,17 +52,15 @@ public class Deck : MonoBehaviour
 
         var cardId = readyCards[top];
         readyCards.RemoveAt(top);
-        usedCards.Add(cardId);
+        //usedCards.Add(cardId);
 
         //Debug.Log("Got top:" + top + " " + cardId);
         return cardId;
     }
 
-    public void Empty()
-    {
-        if (readyCards == null)
-        {
 
-        }
+    public void RemoveCard()
+    {
+        
     }
 }

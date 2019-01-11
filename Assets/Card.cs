@@ -6,14 +6,17 @@ public class Card
 
     public enum Suit
     {
+        None = -1,
         Diamonds,
         Clubs,
         Hearts,
-        Spades
+        Spades,
+        
     };
 
     public enum Value
-    {
+    {   
+        None = -1,
         Two,
         Three,
         Four,
@@ -27,17 +30,13 @@ public class Card
         Queen,
         King,
         Ace,
-        Joker
     };
 
     public enum GameTurnState
     {
         ShufflingDeck,
-        EmptyDeck,
         DealingCards,
         PlayingPlayerHand,
-        TakeTwo,
-        TakeThree,
     };
 
     public class CardMessage : MessageBase

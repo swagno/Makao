@@ -5,14 +5,15 @@ using System.Collections;
 public class Lobby : NetworkManager
 {
 
-    const int maxPlayers = 3;
-    Player[] playerSlots = new Player[4];
+    const int maxPlayers = 2;
+    Player[] playerSlots = new Player[2];
 
 
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
     {
+        Debug.Log("Lobby::OnServerAddPlayer::playerControllerId " + playerControllerId);
         // find empty player slot
-        for (int slot = 1; slot < maxPlayers + 1; slot++)
+        for (int slot = 0; slot < maxPlayers ; slot++)
         {
             if (playerSlots[slot] == null)
             {
@@ -21,6 +22,8 @@ public class Lobby : NetworkManager
 
                 player.playerId = slot;
                 playerSlots[slot] = player;
+
+                
 
                 Debug.Log("Adding player in slot " + slot);
                 NetworkServer.AddPlayerForConnection(conn, playerObj, playerControllerId);
@@ -56,6 +59,7 @@ public class Lobby : NetworkManager
 
     public override void OnStartClient(NetworkClient client)
     {
+        Debug.Log("Lobby::OnStartClient ");
         client.RegisterHandler(Card.CardMsgId, OnCardMsg);
     }
 

@@ -20,6 +20,7 @@ public struct CardId
     {
         return suit.ToString() + ":" + value.ToString();
     }
+
 }
 
 
