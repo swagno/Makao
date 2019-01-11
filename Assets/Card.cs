@@ -4,6 +4,7 @@ using UnityEngine.Networking;
 public class Card
 {
 
+
     public enum Suit
     {
         None = -1,

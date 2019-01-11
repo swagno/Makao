@@ -6,8 +6,7 @@ using UnityEngine.Networking;
 
 public class CardSlot : MonoBehaviour
 {
-	public CardId cardId;
 
-
+    public CardId cardId;
 
 }

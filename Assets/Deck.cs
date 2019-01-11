@@ -7,7 +7,7 @@ public class Deck : MonoBehaviour
     public Player player;
     public List<CardId> readyCards = new List<CardId>();
     public List<CardId> usedCards = new List<CardId>();
-
+    
     public void Awake()
     {
         for (int i = 0; i < 4; i++)
@@ -58,9 +58,18 @@ public class Deck : MonoBehaviour
         return cardId;
     }
 
-
-    public void RemoveCard()
+    public void GetFirstCardToUsed()
     {
-        
+        int top = readyCards.Count - 1;
+
+        var cardId = readyCards[top];
+        readyCards.RemoveAt(top);
+        usedCards.Add(cardId);
+
+        Debug.Log("Pierwsza w użytych:" + cardId);
+        //return cardId;
     }
+
+
 }
+

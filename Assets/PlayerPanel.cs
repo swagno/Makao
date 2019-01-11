@@ -8,13 +8,13 @@ public class PlayerPanel : MonoBehaviour
 {
 
     public CardSlot[] cardSlots;
+    
     public int nextSlot = 0;
     public Image cardSlotImage;
     public Player player;
     public Vector3 startPosition;
     //public Dictionary<CardSlot, bool> cardState = new Dictionary<CardSlot, bool>();
     public List<CardSlot> CardsToCompare = new List<CardSlot>();
-    public Deck deck;
 
     private void Awake()
     {
@@ -62,6 +62,17 @@ public class PlayerPanel : MonoBehaviour
             card.cardId = new CardId();
         }
         nextSlot = 0;
+    }
+
+    public void ClearCardsInPlayerSlot(List<CardSlot> CardsToRemove)
+    {
+        foreach (var card in CardsToRemove)
+        {
+            Debug.Log("usunieta karta " + card.cardId);
+            card.gameObject.SetActive(false);
+            card.cardId = new CardId();
+        }
+        //nextSlot = 0;
     }
 
     public void CreateInstances()

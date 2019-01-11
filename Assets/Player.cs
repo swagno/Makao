@@ -6,7 +6,7 @@ public class Player : NetworkBehaviour
 {
 
 	public PlayerPanel playerPanel;
-    public Deck deck;
+    
     bool isObserver = false;
 
 	[SyncVar] 
@@ -121,7 +121,7 @@ public class Player : NetworkBehaviour
 		{
 			var lostMsg = "You Lost " + amount;
 			Debug.Log(lostMsg);
-			CardManager.singleton.infoText.text = lostMsg;
+			//CardManager.singleton.infoText.text = lostMsg;
 		}
 	}
 
@@ -182,6 +182,7 @@ public class Player : NetworkBehaviour
 
     }
 
+    [Command]
     public void CmdConfirm()
     {
         if (CardManager.singleton.turnState != Card.GameTurnState.PlayingPlayerHand)
@@ -200,9 +201,34 @@ public class Player : NetworkBehaviour
             Debug.Log("wcisniete karty na liscie " + i.cardId);
         }
 
-        CardManager.singleton.IsMoveValid(deck.usedCards.Last(), playerPanel.CardsToCompare);
+        var deck = CardManager.singleton.deck;
+        foreach (var i in deck.usedCards)
+        {
+            Debug.Log("KARTY W LISCIE UZYTYCH " + i);
+        }
+        
 
-        CardManager.singleton.ServerNextPlayer();
+        var item = deck.usedCards[deck.usedCards.Count - 1];
+        Debug.Log("ostatnia karta z wyrzuconych " + item);
+
+
+        if(CardManager.singleton.IsMoveValid(deck.usedCards.Last(), playerPanel.CardsToCompare))
+        {
+            Debug.Log("Mozna rzucic karty ");
+        }
+        else
+        {
+            Debug.Log("Nie Mozna rzucic karty ");
+        }
+        
+        //Debug.Log("porównało karty");
+        CardManager.singleton.RemoveCard(playerPanel.CardsToCompare);
+        playerPanel.CardsToCompare.Clear();
+        //Debug.Log("usunęło karty");
+        
+        
+        //CardManager.singleton.ServerNextPlayer();
+        //Debug.Log("kolejny gracz");
 
     }
 

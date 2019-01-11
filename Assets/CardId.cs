@@ -5,6 +5,7 @@ using System.Collections.Generic;
 [Serializable]
 public struct CardId
 {
+
     public CardId(Card.Suit s, Card.Value v, bool h)
     {
         suit = s;

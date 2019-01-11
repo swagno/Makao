@@ -16,7 +16,7 @@ public class CardManager : NetworkBehaviour
     public Player localPlayer;
     public Text infoText;
     public int sizePlayers;
-    public PlayerPanel cardsToPlay;
+    
  
     [SyncVar]
     public Card.GameTurnState turnState;
@@ -60,9 +60,30 @@ public class CardManager : NetworkBehaviour
         return deck.GetTopCard();
     }
 
-    public CardId RemoveCard()
+    public void RemoveCard(List<CardSlot> pickedCards)
     {
-        return deck.GetTopCard();
+        foreach (var i in pickedCards)
+        {
+            Debug.Log("karta pobrana " + i.cardId);
+        }
+
+        Debug.Log("Zaraz będzie usuwać");
+        foreach ( var card in pickedCards)
+        {
+            Debug.Log("sprawdza karte" + card.cardId);
+            deck.usedCards.Add(card.cardId);
+            foreach (var i in deck.usedCards)
+            {
+                Debug.Log("karty w liście odrzuconych " + i); 
+            }
+
+            
+
+            currentTurnPlayer.playerPanel.ClearCardsInPlayerSlot(pickedCards);
+        }
+        Debug.Log("OSTATNIA KARTA W UŻYTYCH" + deck.usedCards.Last());
+        
+        
     }
 
     public void AddPlayer(Player player)
@@ -167,10 +188,11 @@ public class CardManager : NetworkBehaviour
     [Client]
     public void ClientDisableAllButtons()
     {
-        buttonConfirm.interactable = false;
+        
         buttonGetCard.interactable = false;
-        
-        
+        buttonConfirm.interactable = false;
+
+
     }
 
  
@@ -179,7 +201,7 @@ public class CardManager : NetworkBehaviour
     [Client]
     public void ClientState_StartDeck()
     {
-            deck.ReturnAllCards();
+            //deck.ReturnAllCards();
            // deck.Shuffle();
     }
 
@@ -221,6 +243,8 @@ public class CardManager : NetworkBehaviour
     {
         ServerEnterGameState(Card.GameTurnState.DealingCards, "Dealing cards");
 
+        
+
         foreach (var player in players) 
         {
             for (int j = 0; j < 5; j++)
@@ -229,7 +253,7 @@ public class CardManager : NetworkBehaviour
             }
         }
         Debug.Log("serverState teraz rozdaje karty");
-
+        
         ServerNextState("ServerState_PlayHands");
     }
     
@@ -237,6 +261,13 @@ public class CardManager : NetworkBehaviour
     void ServerState_PlayHands()
     {
         ServerEnterGameState(Card.GameTurnState.PlayingPlayerHand, "Playing hands");
+        deck.GetFirstCardToUsed();
+
+        foreach (var i in deck.usedCards)
+        {
+            Debug.Log("11111111 Karty w użytych" + i);
+        }
+
         if (isLocalPlayer)
         {
             Debug.Log("local player");
@@ -315,6 +346,7 @@ public class CardManager : NetworkBehaviour
     }
 
     //ZASADY
+    [Server]
     public bool IsMoveValid(CardId topCard, List<CardSlot> pickedCards)
     {
         if (pickedCards.Count == 2 || pickedCards.Count == 0)
@@ -330,12 +362,13 @@ public class CardManager : NetworkBehaviour
             return false;
         }
 
-        if (topCard.value == pickedCards[0].cardId.value || topCard.suit == pickedCards[0].cardId.suit)
+        if (topCard.value == pickedCards[0].cardId.value || topCard.suit == pickedCards[0].cardId.suit || (pickedCards[0].cardId.value == Card.Value.Queen && pickedCards[0].cardId.suit == Card.Suit.Spades))
         {
             return true;
         }
         return false;
     }
+
 
     ////// Client UI hooks ////////
 
